@@ -198,7 +198,10 @@ static void GenStruct(const StructDef &struct_def, const Table *table,
        it != struct_def.fields.vec.end();
        ++it) {
     FieldDef &fd = **it;
-    if (struct_def.fixed || table->CheckField(fd.value.offset)) {
+    // always to present field, '{}' presents empty field
+    // bool present = struct_def.fixed || table->CheckField(fd.value.offset);
+    bool present =  = true;
+    if (present) {
       // The field is present.
       if (fieldout++) {
         text += ",";
